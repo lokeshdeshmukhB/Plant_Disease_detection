@@ -1,0 +1,6 @@
+{
+  "name": "Admin User",
+  "email": "admin@plantdi.com",
+  "password": "admin123",
+  "role": "admin"
+}

@@ -39,7 +39,19 @@ export const predictDisease = async (req, res) => {
 
       predictions = mlResponse.data.predictions;
     } catch (mlError) {
-      console.error('ML Service Error:', mlError.message);
+      console.error('===== ML Service Error =====');
+      console.error('Error message:', mlError.message);
+      if (mlError.response) {
+        console.error('Status:', mlError.response.status);
+        console.error('Status text:', mlError.response.statusText);
+        console.error('Response data:', mlError.response.data);
+      } else if (mlError.request) {
+        console.error('No response received from ML service');
+        console.error('Request was made but no response');
+      } else {
+        console.error('Error setting up request:', mlError.message);
+      }
+      console.error('===========================');
       
       // If ML service is not available, create a placeholder prediction
       // This allows the system to work even when ML service is down
